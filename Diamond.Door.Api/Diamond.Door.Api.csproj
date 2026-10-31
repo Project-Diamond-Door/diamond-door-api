@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Diamond.Door.Domain\Diamond.Door.Domain.csproj" />
+    <ProjectReference Include="..\Diamond.Door.Data\Diamond.Door.Data.csproj" />
   </ItemGroup>
 
 </Project>
