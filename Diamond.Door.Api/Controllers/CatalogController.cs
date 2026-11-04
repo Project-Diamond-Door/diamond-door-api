@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Diamond.Door.Domain.Catalog;
 using Diamond.Door.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace Diamond.Door.Api.Controllers
 {
@@ -36,65 +35,29 @@ namespace Diamond.Door.Api.Controllers
         [HttpPost]
         public IActionResult Post(Item item)
         {
-           _db.Items.Add(item);
-_db.SaveChanges();
-return Created($"/catalog/{item.Id}", item);
+            return Created("/catalog/42", item);
         }
 
-        
-[HttpPost("{id:int}/ratings")]
-public IActionResult PostRating(int id, [FromBody] Rating rating)
-{
-    var item = _db.Items.Find(id);
+        [HttpPost("{id:int}/ratings")]
+        public IActionResult PostRating(int id, [FromBody] Rating rating)
+        {
+            var item = new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m);
+            item.Id = id;
+            item.AddRating(rating);
 
-    if (item == null)
-    {
-        return NotFound();
-    }
+            return Ok(item);
+        }
 
-    item.AddRating(rating);
-    _db.SaveChanges();
+        [HttpPut("{id:int}")]
+        public IActionResult Put(int id, Item item)
+        {
+            return NoContent();
+        }
 
-    return Ok(item);
-}
-
-
-       
-[HttpPut("{id:int}")]
-public IActionResult Put(int id, Item item)
-{
-    if (id != item.Id)
-    {
-        return BadRequest();
-    }
-
-    if (!_db.Items.Any(i => i.Id == id))
-    {
-        return NotFound();
-    }
-
-    _db.Entry(item).State = EntityState.Modified;
-    _db.SaveChanges();
-
-    return NoContent();
-}
-
-
-[HttpDelete("{id:int}")]
-public IActionResult Delete(int id)
-{
-    var item = _db.Items.Find(id);
-
-    if (item == null)
-    {
-        return NotFound();
-    }
-
-    _db.Items.Remove(item);
-    _db.SaveChanges();
-
-    return NoContent();
-}
-
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete(int id)
+        {
+            return NoContent();
+        }
     }
 }
