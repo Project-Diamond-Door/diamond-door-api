@@ -1,5 +1,7 @@
+using Diamond.Door.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,6 +20,12 @@ namespace Diamond.Door.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<StoreContext>(options =>
+                options.UseSqlite("Data Source=../Registrar.sqlite",
+                b => b.MigrationsAssembly("Diamond.Door.Api"))
+            );
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }
