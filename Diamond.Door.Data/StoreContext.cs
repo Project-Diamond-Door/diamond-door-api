@@ -1,5 +1,7 @@
 ﻿using Diamond.Door.Domain.Catalog;
 using Microsoft.EntityFrameworkCore;
+using Diamond.Door.Domain.Orders;
+
 
 namespace Diamond.Door.Data
 {
@@ -10,6 +12,7 @@ namespace Diamond.Door.Data
         { }
 
         public DbSet<Item> Items { get; set; }
+public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
