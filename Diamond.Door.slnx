@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/Diamond.Door.Domain.Tests/Diamond.Door.Domain.Tests.csproj" />
+  </Folder>
   <Project Path="Diamond.Door.Api/Diamond.Door.Api.csproj" />
   <Project Path="Diamond.Door.Data/Diamond.Door.Data.csproj" />
   <Project Path="Diamond.Door.Domain/Diamond.Door.Domain.csproj" />
