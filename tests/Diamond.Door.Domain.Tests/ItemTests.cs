@@ -30,5 +30,6 @@ public void Can_Create_Add_Rating()
     item.AddRating(rating);
 
     // Assert
-    Assert.AreEqual(rating, item.Ratings[0])
+    Assert.AreEqual(rating, item.Ratings[0]);
+}
 }
