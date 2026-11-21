@@ -26,6 +26,16 @@ namespace Diamond.Door.Api
                 b => b.MigrationsAssembly("Diamond.Door.Api"))
             );
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
         }
@@ -42,6 +52,8 @@ namespace Diamond.Door.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
