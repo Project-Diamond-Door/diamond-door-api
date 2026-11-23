@@ -1,6 +1,24 @@
 @Diamond.Door.Api_HostAddress = http://localhost:5209
 
-GET {{Diamond.Door.Api_HostAddress}}/weatherforecast/
+GET {{Diamond.Door.Api_HostAddress}}/catalog/3
 Accept: application/json
 
 ###
+DELETE http://localhost:5209/catalog/3
+
+
+###
+curl --request POST \
+  --url https://dev-xq1vi7g51gdu3y42.us.auth0.com/oauth/token \
+  --header 'content-type: application/json' \
+  --data '{
+    "client_id":"nfKSEm64DjZvkZ1AyiXsBnsbgnIIr81H",
+    "client_secret":"gwaMHI08iRYZp7BfrWDuwZhvuBa0vxja14HE4R7CM6WCkHrTpJaTBStKEX8ZnKxM",
+    "audience":"https://diamond-door",
+    "grant_type":"client_credentials"
+  }'
+
+### DELETE a Item to the Catalog collection
+curl --request DELETE \ 
+    --url https://localhost:5209/catalog/3 \
+    --header 'authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Il9BUWRLTGw2R2hoczF6UkJfRjJOQyJ9.eyJpc3MiOiJodHRwczovL2Rldi14cTF2aTdnNTFnZHUzeTQyLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJuZktTRW02NERqWnZrWjFBeWlYc0Juc2JnbklJcjgxSEBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kaWFtb25kLWRvb3IiLCJpYXQiOjE3OTU0MDgxODMsImV4cCI6MTc5NTQ5NDU4Mywic2NvcGUiOiJkZWxldGU6Y2F0YWxvZyIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsImF6cCI6Im5mS1NFbTY0RGpadmtaMUF5aVhzQm5zYmduSUlyODFIIn0.THEa-C413BvjMxKlcjWlZCDu78PEyThOoCfkB_EmtWjLXUA_BqwuwZZfZeAXuuXqtWHqMihB8QpxvK3MQGBTJx5xtOBHYAlQtTCaRRs_X9qIRaOrAaNZa4J5x9sgPOlth8UEB0TQFQGnBRRPNcKLgOkzuu3DJcibtODJLnt0-_kQMTpz7nS7SXuiaB3N9ycojyBPQPfwW3tZtJYj2_z3cgxV2jN6FnykiHf36QYjxEiu1GURUowI0aI0S_tBUs2Hvd5HHWOiElgLp1pBXBhJlo0wIRnpxaAzntZsDo6TaaNuAmt7lP3LW-8GiXDeYcdrSq2HiQipPE5UsjgGQh2odA'

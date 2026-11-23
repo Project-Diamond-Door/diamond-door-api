@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Diamond.Door.Domain.Catalog;
 using Diamond.Door.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Diamond.Door.Api.Controllers
 {
@@ -81,6 +82,7 @@ public IActionResult Put(int id, Item item)
 
 
 [HttpDelete("{id:int}")]
+[Authorize("delete:catalog")]
 public IActionResult Delete(int id)
 {
     var item = _db.Items.Find(id);
